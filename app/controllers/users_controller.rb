@@ -10,9 +10,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    # Parameters: {"id"=>"3"}
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+    # Book.find(params[:id])
   end
 
   def index

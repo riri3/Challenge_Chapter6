@@ -3,15 +3,18 @@ class BooksController < ApplicationController
   before_action :ensure_correct_user, only: [:update, :edit, :destroy]
 
   def show
+    # Parameters: {"id"=>"1"}
     @book = Book.find(params[:id])
     @book_new = Book.new
     @user = @book.user
+    @book_comment = BookComment.new
   end
 
   def index
     @books = Book.all
     @book = Book.new
-    @user =current_user
+    @user = current_user
+    # @book_favorite = Book.find(params[:id])
   end
 
   def create
@@ -54,7 +57,7 @@ class BooksController < ApplicationController
 
   def ensure_correct_user
     @book = Book.find(params[:id])
-    if book.user == current_user
+    unless @book.user == current_user
       redirect_to books_path
     end
   end
