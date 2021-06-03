@@ -1,4 +1,4 @@
-cd# This file is auto-generated from the current state of the database. Instead
+# This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
@@ -10,7 +10,7 @@ cd# This file is auto-generated from the current state of the database. Instead
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_02_083758) do
+ActiveRecord::Schema.define(version: 2021_06_03_052702) do
 
   create_table "book_comments", force: :cascade do |t|
     t.text "comment"
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(version: 2021_06_02_083758) do
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
