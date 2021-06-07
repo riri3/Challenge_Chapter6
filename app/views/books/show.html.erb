@@ -32,7 +32,7 @@
           <%= render partial: 'book_comments/book_comments', locals: {book: @book} %></div>
 
 　　　<div class="new-comment">
-　　　　<%= form_with(model:[@book, @book_comment], remote: true) do |f| %>
+　　　　<%= form_with model:[@book, @book_comment], remote: true do |f| %>
 　　　  　<%= f.text_area :comment, rows:'7', size: "60", placeholder: "コメント" %>
 　　　 　 <br>
 　　　  　<%= f.submit "送信" %>
