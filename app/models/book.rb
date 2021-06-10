@@ -6,15 +6,19 @@ class Book < ApplicationRecord
 	 def favorited_by?(user)
 	   self.favorites.where(user_id: user.id).exists?
 	 end
-	 
+
 	 def self.search(search, word)
 	 	 if search == "forward_match"
+	 	 	# モデル名.where('カラム名 LIKE?','検索したい文字列%')前方一致
 	 	  	@book = Book.where("title LIKE?", "#{word}%")
 	 	 elsif search == "backward_match"
+	 	 	# モデル名.where('カラム名 LIKE?','%検索したい文字列')後方一致
 	 	  	@book = Book.where("title LIKE?", "%#{word}")
 	 	 elsif search == "perfect_match"
+	 	 	# モデル名.where('検索したい文字列')完全一致
 	 	    @book = Book.where("#{word}")
      elsif search == "partial_match"
+     	# モデル名.where('カラム名 like ?','%検索したい文字列%')文字列のどの部分にでも検索したい文字列が含まれていればOK
       	@book = Book.where("title LIKE?", "%#{word}%")
      else
       	@book = Book.all
