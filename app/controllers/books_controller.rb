@@ -1,4 +1,7 @@
 class BooksController < ApplicationController
+  #ログインしているユーザーのみに、このコントローラの処理（＝アクセス）を許可する（deviseのヘルパーアクション）
+  # モデル名にUser以外を使用している場合、『user』部分を書き換える（例：memberならauthentivaate_memper!）
+ex.モデル名がmemberの場合、
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:update, :edit, :destroy]
 
