@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+# 投稿した本人だけが、投稿した本文の編集や削除ができるという制限をかけるには3つの操作が必要である。
+# 1. ユーザがログイン済みかどうか。before_action :authenticate_user!
+# 2. ログインしたユーザが投稿した本人かどうかview内で表示を分ける。
+# 3. ログインしたユーザが投稿した本人かどうかをcontrollerで分ける def ensure_correct_user ~  unless @user == current_user
+
+
+
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:update, :edit]
 
