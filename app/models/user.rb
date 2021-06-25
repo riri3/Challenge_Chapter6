@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :books, dependent: :destroy
   has_many :book_comments, dependent: :destroy
-  has_many :favorites, dependent: :
+  has_many :favorites, dependent: :destroy
 
   # 自分がフォローする（与フォロー）側の関係性
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
 
   def follow(user_id)
-    relationships.create(followed_id: user_id)
+    relationships.create(follow_id: user_id)
   end
 
   # ユーザーのフォローを外す、後ほどcontrollerで使用します。
